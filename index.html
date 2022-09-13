@@ -7,6 +7,7 @@
   </head>
 
   <body>
+    <div id="lighten"></div>
     <div id="backgroundCover"></div>
     <form>
       <select id="hour">
@@ -27,7 +28,8 @@
       <input type="submit" value="Submit">
     </form>
     <div id="formOutput">
-      <h1> Temp</h1>
+      <h2>Date, time</h2>
+      <h1>Temp</h1>
       <h4>Humidity</h4>
       <h4>Rain</h4>
       <h4>windspeed</h4>
@@ -40,13 +42,21 @@
       <h4>windspeed</h4>
       <div id="hourly">
         <!-- <h2>Hourly Temp</h2> -->
-        <ul>
-          <li id="hourOne">1</li>
-          <li id="hourTwo">2</li>
-          <li id="hourThree">3</li>
-          <li id="hourFour">4</li>
-          <li id="hourFive">5</li>
-          <li id="hourSix">6</li>
+        <ul id="hourLst">
+          <li class='hourList'></li>
+          <li class='hourList'></li>
+          <li class='hourList'></li>
+          <li class='hourList'></li>
+          <li class='hourList'></li>
+          <li class='hourList'></li>
+        </ul>
+        <ul id="tempLst">
+          <li class='list' id="hourOne"></li>
+          <li class='list' id="hourTwo"></li>
+          <li class='list' id="hourThree"></li>
+          <li class='list' id="hourFour"></li>
+          <li class='list' id="hourFive"></li>
+          <li class='list' id="hourSix"></li>
         </ul>
         <button id="nextSix">NEXT</button>
         <button id="lastSix">LAST</button>
@@ -54,9 +64,10 @@
     </div>
     
 
-
+    
     <script src="index.js"></script>
     <script src="background.js"></script>
+    <script src="hourly.js"></script>
   </body>
 
 </html>
