@@ -1,7 +1,8 @@
 /* body, html {height: 100%;} */
 
 body {
-    background-color: rgb(153, 176, 161);
+    /* background-color: rgb(153, 176, 161); */
+    background-image: url(./weatherAppPhotos/ClearNightTwo.png);
 }
 
 #backgroundCover {
@@ -16,13 +17,16 @@ body {
 }
 
 #currentDay {
-    background-color: beige;
+    background-color: rgb(132, 140, 181);
     position:absolute;
     top:30px;
     right:230px;
     bottom:400px;
     left:230px;
     border-radius: 10px;
+    border-style: solid;
+    border-width: 5px;
+    border-color: black;
 }
 
 #hourly {
@@ -57,13 +61,16 @@ form {
 }
 
 #formOutput {
-    background-color: beige;
+    background-color: rgb(132, 140, 181);
     position:absolute;
     top:400px;
     right:230px;
     bottom:30px;
     left:700px;
     border-radius: 10px;
+    border-style: solid;
+    border-width: 5px;
+    border-color: black;
 }
 
 h1 {
@@ -79,6 +86,10 @@ h2 {
 
 h3 {
 
+}
+
+h4 {
+    margin-left: 20px;
 }
 
 li {
