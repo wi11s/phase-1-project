@@ -1,8 +1,7 @@
 /* body, html {height: 100%;} */
 
 body {
-    /* background-color: rgb(153, 176, 161); */
-    background-image: url(./weatherAppPhotos/ClearNightTwo.png);
+
 }
 
 #backgroundCover {
@@ -85,7 +84,7 @@ h2 {
 }
 
 h3 {
-
+    margin-left: 20px;
 }
 
 h4 {
