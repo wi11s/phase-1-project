@@ -22,8 +22,6 @@ body {
     right:200px;
     bottom:0px;
     left:200px;
-    
-    background-color: rgb(96, 96, 96);
     opacity: 1;
     background-position-x: center;
     background-position-y: bottom;
@@ -128,7 +126,7 @@ h4 {
 
 #hourLst {
     position:absolute;
-    top:0px;
+    top:-6px;
     right:50px;
     left:50px;
 }
@@ -140,8 +138,14 @@ h4 {
     left:50px;
 }
 
-li {
+.list {
     display: inline;
     color: rgb(153, 176, 161);
     padding: 50px;
+}
+
+.hourList {
+    display: inline;
+    color: rgb(153, 176, 161);
+    padding: 48px;
 }
