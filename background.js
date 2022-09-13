@@ -19,11 +19,11 @@ fetch('https://api.open-meteo.com/v1/forecast?latitude=40.71&longitude=-74.01&ho
     console.log(currentTime)
     console.log(sunrise)
     console.log(sunset)
-    let isRaining = obj.hourly.precipitation[parseInt(today.getHours())]>0
+    let isRaining = obj.hourly.precipitation[parseInt(today.getHours())]>0.05
     console.log(isRaining)
 
 
-    if (currentTime>sunrise && currentTime) {
+    if (currentTime>sunrise && currentTime<sunset) {
         body.style = 'background-image: url(./weatherAppPhotos/RainDay.png)'
     } else {
         body.style = 'background-image: url(./weatherAppPhotos/ClearNightTwo.png)'
