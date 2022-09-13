@@ -26,7 +26,7 @@ body {
 }
 
 #hourly {
-    background-color: black;
+    background-color: rgb(96, 96, 96);
     position: absolute;
     top:240px;
     right:0px;
@@ -37,23 +37,33 @@ body {
 }
 
 #nextSix {
-
+    position: absolute;
+    top:20px;
+    right: 20px;
 }
 
 #lastSix {
-
+    position: absolute;
+    top:20px;
+    left:20px;
 }
 
 form {
     position: absolute;
-    top:700px;
+    top:600px;
     right:200px;
     bottom:0px;
-    left:250px;
+    left:300px;
 }
 
 #formOutput {
-
+    background-color: beige;
+    position:absolute;
+    top:400px;
+    right:230px;
+    bottom:30px;
+    left:700px;
+    border-radius: 10px;
 }
 
 h1 {
@@ -74,7 +84,8 @@ h3 {
 li {
     display: inline;
     color: rgb(153, 176, 161);
-    padding: 70px;
+    padding: 65px;
     font-size:x-large;
     text-align: center;
+    margin-left: 5px;
 }

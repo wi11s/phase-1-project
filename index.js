@@ -20,7 +20,7 @@ function newSearch(hour,day,month,year){
     let instance = new Search(hour,day,month,year)
     let format = `${instance.year}-${instance.month}-${instance.day}T${instance.hour}`
     let spot = res.hourly.time.indexOf(format)
-    console.log(spot)
+    // console.log(spot)
     results(spot)
 }
 
@@ -31,7 +31,7 @@ let humid = `The relative humidity for that time is ${res.hourly.relativehumidit
 let precipitation = (res.hourly.precipitation[indexNumber] > 0)? "It may rain at that time." : "It shouldn't rain at that time."
 let wind = `The wind speed for that time is ${res.hourly.windspeed_10m[indexNumber]} mph.`
 
-console.log(temp, humid, precipitation, wind)
+// console.log(temp, humid, precipitation, wind)
 
 }
 

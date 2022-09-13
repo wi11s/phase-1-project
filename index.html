@@ -9,25 +9,25 @@
   <body>
     <div id="backgroundCover"></div>
     <form>
-      <select>
+      <select id="hour">
         <option value="1">1</option>
         <option value="2">2</option>
         <option value="3">3</option>
         <option value="4">4</option>
       </select>
-      <select>
+      <select id="day">
         <option value="1">1</option>
         <option value="2">2</option>
         <option value="3">3</option>
         <option value="4">4</option>
       </select>
-      <select>
+      <select id="month">
         <option value="1">1</option>
         <option value="2">2</option>
         <option value="3">3</option>
         <option value="4">4</option>
       </select>
-      <select>
+      <select id="year">
         <option value="1">1</option>
         <option value="2">2</option>
         <option value="3">3</option>
@@ -35,11 +35,16 @@
       </select>
       <input type="submit" value="Submit">
     </form>
-    <div id="formOutput"></div>
+    
+    <div id="formOutput">
+      <p>text</p>
+    </div>
 
     <div id="currentDay">
-      <h1>Current Temp</h1>
-      <h3></h3>
+      <h1></h1>
+      <h3>Humidity</h3>
+      <h4>Rain</h4>
+      <h4>windspeed</h4>
       <div id="hourly">
         <!-- <h2>Hourly Temp</h2> -->
         <ul>
@@ -50,13 +55,15 @@
           <li id="hourFive">5</li>
           <li id="hourSix">6</li>
         </ul>
+        <button id="nextSix">NEXT</button>
+        <button id="lastSix">LAST</button>
       </div>
     </div>
     
-    <button id="nextSix"></button>
-    <button id="lastSix"></button>
+
 
     <script src="index.js"></script>
+    <script src="background.js"></script>
   </body>
 
 </html>
