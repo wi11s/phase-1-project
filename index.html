@@ -7,7 +7,7 @@
   </head>
 
   <body>
-    <script src="index.js"></script>
+    <div id="backgroundCover"></div>
     <form>
       <select>
         <option value="1">1</option>
@@ -33,11 +33,30 @@
         <option value="3">3</option>
         <option value="4">4</option>
       </select>
+      <input type="submit" value="Submit">
     </form>
-    <div id="temp">
-      <h1>Hourly Temp</h1>
-    </div>
+    <div id="formOutput"></div>
 
+    <div id="currentDay">
+      <h1>Current Temp</h1>
+      <h3></h3>
+      <div id="hourly">
+        <!-- <h2>Hourly Temp</h2> -->
+        <ul>
+          <li id="hourOne">1</li>
+          <li id="hourTwo">2</li>
+          <li id="hourThree">3</li>
+          <li id="hourFour">4</li>
+          <li id="hourFive">5</li>
+          <li id="hourSix">6</li>
+        </ul>
+      </div>
+    </div>
+    
+    <button id="nextSix"></button>
+    <button id="lastSix"></button>
+
+    <script src="index.js"></script>
   </body>
 
 </html>
