@@ -1,42 +1,78 @@
-fetch('https://api.open-meteo.com/v1/forecast?latitude=40.71&longitude=-74.01&hourly=temperature_2m,relativehumidity_2m,precipitation,windspeed_10m,winddirection_10m&daily=sunrise,sunset&temperature_unit=fahrenheit&windspeed_unit=mph&precipitation_unit=inch&timezone=America%2FNew_York')
-.then(res => res.json())
-.then(res => {
-//Required checkmarks: 
-//Hourly:
-//Temperature, Relative Humidity, Rain, Wind Speed (10), Wind direction
-//Daily:
-//Max Temp, Min Temp, Sunrise, Sunset
+fetch(
+  "https://api.open-meteo.com/v1/forecast?latitude=40.71&longitude=-74.01&hourly=temperature_2m,relativehumidity_2m,rain,windspeed_10m&daily=temperature_2m_max,temperature_2m_min,sunrise,sunset&temperature_unit=fahrenheit&windspeed_unit=mph&precipitation_unit=inch&timezone=America%2FNew_York"
+)
+  .then((res) => res.json())
+  .then((res) => {
+    //Required checkmarks:
+    //Hourly:
+    //Temperature, Relative Humidity, rain, Wind Speed (10)
+    //Daily:
+    //Max Temp, Min Temp, Sunrise, Sunset
+    let today = new Date();
 
-class Search{
-    constructor(hour,day,month,year){
-        this.hour = hour
-        this.day = day
-        this.month = month
-        this.year = year
+
+    function current() {
+      let format = `${today.getFullYear()}-0${
+        today.getMonth() + 1
+      }-${today.getDate()}T${today.getHours()}:00`;
+      let spot = res.hourly.time.indexOf(format);
+
+      let currTemp = results(spot).temp;
+      let selectCurrTemp = document.getElementById("currentTemp");
+      selectCurrTemp.innerHTML = currTemp;
+
+      let currHumid = results(spot).humid;
+      let selectCurrHumid = document.getElementById("currentHumid");
+      selectCurrHumid.innerHTML = currHumid;
+
+      let currRain = results(spot).rain;
+      let selectCurrRain = document.getElementById("currentRain");
+      selectCurrRain.innerHTML = currRain;
+
+      let currWind = results(spot).wind;
+      let selectCurrWind = document.getElementById("currentWind");
+      selectCurrWind.innerHTML = currWind;
     }
-}
+    current();
 
-function newSearch(hour,day,month,year){
-    let instance = new Search(hour,day,month,year)
-    let format = `${instance.year}-${instance.month}-${instance.day}T${instance.hour}`
-    let spot = res.hourly.time.indexOf(format)
-    // console.log(spot)
-    results(spot)
-}
+    //For the "next six hours" buttons, don't forget to limit generation to 23, spot + 1, +2, etc.
+    // function addHours(){
 
+    // }
 
-function results(indexNumber){
-let temp = `The temperature for that time is ${res.hourly.temperature_2m[indexNumber]} degrees Fahrenheit.`
-let humid = `The relative humidity for that time is ${res.hourly.relativehumidity_2m[indexNumber]}%.`
-let precipitation = (res.hourly.precipitation[indexNumber] > 0)? "It may rain at that time." : "It shouldn't rain at that time."
-let wind = `The wind speed for that time is ${res.hourly.windspeed_10m[indexNumber]} mph.`
+    let submit = document.getElementById("submit");
+    submit.addEventListener("submit", (e) => {
+        e.preventDefault();
 
-// console.log(temp, humid, precipitation, wind)
+        console.log('hour selected:', e.target.hour.value)
+        let format = `${today.getFullYear()}-0${today.getMonth() + 1}-${parseInt(today.getDate()) + parseInt(day.value)}T${e.target.hour.value}`;
 
-}
+        let spot = res.hourly.time.indexOf(format);
 
 
+        let formTemp = document.getElementById("formTemp");
+        formTemp.textContent = results(spot).temp;
+        let formHumid = document.getElementById("formHumid");
+        formHumid.textContent = results(spot).humid;
+        let formRain = document.getElementById("formRain");
+        formRain.textContent = results(spot).rain;
+        let formWind = document.getElementById("formWind");
+        formWind.textContent = results(spot).wind;
 
-newSearch("08:00", "14", "09", "2022") // As you can see here, inputting the information as required would give us a number
+    });
 
-})
+
+
+    function results(indexNumber) {
+      let anything = {
+        temp: `${res.hourly.temperature_2m[indexNumber]}°F`,
+        humid: `Humidity: ${res.hourly.relativehumidity_2m[indexNumber]}%`,
+        rain:
+          res.hourly.rain[indexNumber] > 0
+            ? "It may rain at this time"
+            : "It shouldn't rain at this time.",
+        wind: `${res.hourly.windspeed_10m[indexNumber]} mph`,
+      };
+      return anything;
+    }
+  });
