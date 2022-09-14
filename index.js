@@ -34,7 +34,7 @@ if (today.getMinutes() >= 10) {
       let isRaining =
         obj.hourly.precipitation[parseInt(today.getHours())] > 0.05;
 
-      // currentTime = 0000
+      // currentTime = 1200
       // isRaining = false
 
       if (currentTime > sunrise && currentTime < sunset && isRaining) {
@@ -43,9 +43,9 @@ if (today.getMinutes() >= 10) {
           "background-image: url(./weatherAppPhotos/RainNight.png)";
         edgeDiv.style = "background-color: antiquewhite;";
       } else if (currentTime > sunrise && currentTime < sunset && !isRaining) {
-        body.style = "background-image: url(./weatherAppPhotos/RainDay.png)";
+        body.style = "background-image: url(./weatherAppPhotos/ClearDay.png)";
         backgroundCover.style =
-          "background-image: url(./weatherAppPhotos/RainDay.png)";
+          "background-image: url(./weatherAppPhotos/ClearDay.png)";
         edgeDiv.style = "background-color: antiquewhite;";
       } else if ((currentTime < sunrise || currentTime > sunset) && isRaining) {
         body.style =
@@ -83,11 +83,7 @@ function currentAndForm() {
   )
     .then((res) => res.json())
     .then((res) => {
-      //Required checkmarks:
-      //Hourly:
-      //Temperature, Relative Humidity, rain, Wind Speed (10)
-      //Daily:
-      //Max Temp, Min Temp, Sunrise, Sunset
+
       let today = new Date();
 
       function current() {
@@ -99,9 +95,7 @@ function currentAndForm() {
 
 
         let format = `${today.getFullYear()}-0${today.getMonth() + 1}-${today.getDate()}T${hourlyTime}:00`;
-        console.log(format)
         let spot = res.hourly.time.indexOf(format);
-        console.log(spot)
         
 
         let currTemp = results(spot).temp;
@@ -119,30 +113,19 @@ function currentAndForm() {
         let currWind = results(spot).wind;
         let selectCurrWind = document.getElementById("currentWind");
         selectCurrWind.innerHTML = currWind;
-        // console.log(format);
-        // console.log(spot);
+
       }
       current();
-
-      //For the "next six hours" buttons, don't forget to limit generation to 23, spot + 1, +2, etc.
-      // function addHours(){
-
-      // }
 
       let submit = document.getElementById("submit");
       submit.addEventListener("submit", (e) => {
         e.preventDefault();
 
-        // console.log("hour selected:", e.target.hour.value);
         let format = `${today.getFullYear()}-0${today.getMonth() + 1}-${
           parseInt(today.getDate()) + parseInt(day.value)
         }T${e.target.hour.value}`;
 
-        console.log(format)
-
         let spot = res.hourly.time.indexOf(format);
-
-        console.log(spot)
 
         let formTemp = document.getElementById("formTemp");
         formTemp.textContent = results(spot).temp;
@@ -155,7 +138,6 @@ function currentAndForm() {
       });
 
       function results(indexNumber) {
-        // console.log(res.hourly.rain[indexNumber])
         let anything = {
           temp: `${res.hourly.temperature_2m[indexNumber]}°F`,
           humid: `Humidity: ${res.hourly.relativehumidity_2m[indexNumber]}%`,
@@ -173,97 +155,120 @@ function currentAndForm() {
 function hourlyFunction() {
   let hour = parseInt(today.getHours());
 
-  fetch(
-    `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${long}&hourly=temperature_2m,relativehumidity_2m,precipitation,windspeed_10m,winddirection_10m&daily=sunrise,sunset&temperature_unit=fahrenheit&windspeed_unit=mph&precipitation_unit=inch&timezone=America%2FNew_York`
-  )
+  function renderHourlyInitial() {
+    fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${long}&hourly=temperature_2m,relativehumidity_2m,precipitation,windspeed_10m,winddirection_10m&daily=sunrise,sunset&temperature_unit=fahrenheit&windspeed_unit=mph&precipitation_unit=inch&timezone=America%2FNew_York`)
     .then((res) => res.json())
     .then((obj) => {
-      for (i = 0; i < 6; i++) {
-        renderTemp(obj.hourly["temperature_2m"][hour], i);
-        renderHour(hour, i);
-        hour++;
-      }
+      
+      renderTempAndHour(obj, hour)
+      
     });
+  }
+  renderHourlyInitial()
+
+
+
+  function renderTempAndHour(obj, hour) {
+    for (i = 0; i < 6; i++) {
+      renderTemp(obj.hourly["temperature_2m"][hour], i);
+      renderHour(hour, i);
+      hour++;
+    }
+  }
 
   function renderTemp(obj, i) {
-    // console.log(document.getElementsByClassName("list")[i]);
     const hourTemp = document.getElementsByClassName("list")[i];
-    hourTemp.textContent = `${obj}°`;
+
+    if (obj.toString()[2] !== '.') {
+      hourTemp.textContent = `${obj}.0°`;
+    } else {
+      hourTemp.textContent = `${obj}°`;
+    }
   }
 
   function renderHour(hour, i) {
-    // console.log(document.getElementsByClassName("hourList")[i]);
     const hourTemp = document.getElementsByClassName("hourList")[i];
-    hourTemp.textContent = `${hour}:00`;
+
+    if (hour%24<10) {
+      hourTemp.textContent = `0${hour%24}:00`;
+    } else {
+      hourTemp.textContent = `${hour%24}:00`;
+    }
+
+    
   }
-}
 
-function loadbackground() {
-  if (today.getMinutes() >= 10) {
-    currentTime = parseInt(`${today.getHours()}${today.getMinutes()}`);
-  } else {
-    currentTime = parseInt(`${today.getHours()}0${today.getMinutes()}`);
-  }
 
-  const body = document.querySelector("body");
+  const nextSix = document.querySelector('#nextSix')
+  nextSix.addEventListener('click', () => {
+    fetchAndRenderHourlyPlus()
+  })
+  const lastSix = document.querySelector('#lastSix')
+  lastSix.addEventListener('click', () => {
+    fetchAndRenderHourlyMinus()
+  })
 
-  const edgeDiv = document.querySelector("#lighten");
-
-  fetch(
-    `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${long}&hourly=temperature_2m,relativehumidity_2m,precipitation,windspeed_10m,winddirection_10m&daily=sunrise,sunset&temperature_unit=fahrenheit&windspeed_unit=mph&precipitation_unit=inch&timezone=America%2FNew_York`
-  )
+  function fetchAndRenderHourlyPlus() {
+    fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${long}&hourly=temperature_2m,relativehumidity_2m,precipitation,windspeed_10m,winddirection_10m&daily=sunrise,sunset&temperature_unit=fahrenheit&windspeed_unit=mph&precipitation_unit=inch&timezone=America%2FNew_York`)
     .then((res) => res.json())
     .then((obj) => {
-      let sunrise = parseInt(
-        `${obj.daily.sunrise[0].slice(11, 13)}${obj.daily.sunrise[0].slice(
-          14,
-          16
-        )}`
-      );
-      let sunset = parseInt(
-        `${obj.daily.sunset[0].slice(11, 13)}${obj.daily.sunset[0].slice(
-          14,
-          16
-        )}`
-      );
-
-      let isRaining =
-        obj.hourly.precipitation[parseInt(today.getHours())] > 0.05;
-
-      // currentTime = 0000
-      // isRaining = false
-
-      if (currentTime > sunrise && currentTime < sunset && isRaining) {
-        body.style = "background-image: url(./weatherAppPhotos/RainNight.png)";
-        backgroundCover.style =
-          "background-image: url(./weatherAppPhotos/RainNight.png)";
-        edgeDiv.style = "background-color: antiquewhite;";
-      } else if (currentTime > sunrise && currentTime < sunset && !isRaining) {
-        body.style = "background-image: url(./weatherAppPhotos/RainDay.png)";
-        backgroundCover.style =
-          "background-image: url(./weatherAppPhotos/RainDay.png)";
-        edgeDiv.style = "background-color: antiquewhite;";
-      } else if ((currentTime < sunrise || currentTime > sunset) && isRaining) {
-        body.style =
-          "background-image: url(./weatherAppPhotos/NightLightning.png)";
-        backgroundCover.style =
-          "background-image: url(./weatherAppPhotos/NightLightning.png)";
-        edgeDiv.style = "background-color: black;";
+      
+      if (hour<=138) {
+        renderTempAndHour(obj, hour+=6)
       } else {
-        body.style =
-          "background-image: url(./weatherAppPhotos/ClearNightTwo.png)";
-        backgroundCover.style =
-          "background-image: url(./weatherAppPhotos/ClearNightTwo.png)";
-        edgeDiv.style = "background-color: black;";
+        alert('Sorry, but you cannot go beyond this point.')
       }
+    
+      const whatDayTag = document.querySelector('#whatDay')
+      if (Math.ceil(hour/24) === 1) {
+        whatDayTag.textContent = 'Today'
+      } else if (Math.ceil(hour/24) === 2) {
+        whatDayTag.textContent = 'Tomorrow'
+      } else {
+        whatDayTag.textContent = `${today.getMonth() + 1}-${today.getDate()+Math.floor(hour/24)}`
+      }
+      
     });
+  }
+
+  function fetchAndRenderHourlyMinus() {
+    fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${long}&hourly=temperature_2m,relativehumidity_2m,precipitation,windspeed_10m,winddirection_10m&daily=sunrise,sunset&temperature_unit=fahrenheit&windspeed_unit=mph&precipitation_unit=inch&timezone=America%2FNew_York`)
+    .then((res) => res.json())
+    .then((obj) => {
+
+      if (hour>=6) {
+        renderTempAndHour(obj, hour-=6)
+      } else {
+        alert('Sorry, but you cannot go beyond this point.')
+      }
+
+      const whatDayTag = document.querySelector('#whatDay')
+      if (Math.ceil(hour/24) === 1) {
+        whatDayTag.textContent = 'Today'
+      } else if (Math.ceil(hour/24) === 2) {
+        whatDayTag.textContent = 'Tomorrow'
+      } else {
+        whatDayTag.textContent = `${today.getMonth() + 1}-${today.getDate()+Math.floor(hour/24)}`
+      }
+      
+      
+    });
+  }
+
+
+
 }
+
+
+
+
+
 
 
 
 const cities = {
-  washington: [38.8921, -77.0241],
   newYork: [40.71, -74.01],
+  washington: [38.8921, -77.0241],
   sacramento: [38.5737, -121.4871],
   losAngeles: [34.05, -118.24],
   chicago: [41.85, -87.65],
@@ -272,12 +277,32 @@ const cities = {
   philadelphia: [39.95, -75.16],
 };
 
-let lat = cities.washington[0];
-let long = cities.washington[1];
+let lat = cities.newYork[0];
+let long = cities.newYork[1];
 
 const cityForm = document.querySelector("#cityForm");
 cityForm.addEventListener("submit", (e) => {
   e.preventDefault();
+
+//clear hourform
+
+let formTemp = document.getElementById("formTemp");
+formTemp.textContent = '';
+let formHumid = document.getElementById("formHumid");
+formHumid.textContent = '';
+let formRain = document.getElementById("formRain");
+formRain.textContent = '';
+let formWind = document.getElementById("formWind");
+formWind.textContent = '';
+
+
+
+
+
+
+
+
+
 
   lat = cities[e.target.city.value][0];
   long = cities[e.target.city.value][1];
@@ -322,9 +347,9 @@ cityForm.addEventListener("submit", (e) => {
           "background-image: url(./weatherAppPhotos/RainNight.png)";
         edgeDiv.style = "background-color: antiquewhite;";
       } else if (currentTime > sunrise && currentTime < sunset && !isRaining) {
-        body.style = "background-image: url(./weatherAppPhotos/RainDay.png)";
+        body.style = "background-image: url(./weatherAppPhotos/ClearDay.png)";
         backgroundCover.style =
-          "background-image: url(./weatherAppPhotos/RainDay.png)";
+          "background-image: url(./weatherAppPhotos/ClearDay.png)";
         edgeDiv.style = "background-color: antiquewhite;";
       } else if ((currentTime < sunrise || currentTime > sunset) && isRaining) {
         body.style =
@@ -344,3 +369,19 @@ cityForm.addEventListener("submit", (e) => {
   currentAndForm();
   hourlyFunction();
 });
+
+const citySubmitButton = document.querySelector('#citySubmit')
+citySubmitButton.addEventListener('mouseover', e => {
+  citySubmitButton.style['background-color'] = 'blue';
+})
+citySubmitButton.addEventListener('mouseleave', e => {
+  citySubmitButton.style['background-color'] = '#9f9f9f';
+})
+
+const hourSubmit = document.querySelector('#hourSubmit')
+hourSubmit.addEventListener('mouseover', e => {
+  hourSubmit.style['background-color'] = 'blue';
+})
+hourSubmit.addEventListener('mouseleave', e => {
+  hourSubmit.style['background-color'] = '#9f9f9f';
+})
