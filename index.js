@@ -36,7 +36,7 @@ if (today.getMinutes() >= 10) {
       let isRaining =
         obj.hourly.precipitation[parseInt(today.getHours())] > 0.05;
 
-      // currentTime = 0000
+      // currentTime = 1200
       // isRaining = false
 
       if (currentTime > sunrise && currentTime < sunset && isRaining) {
@@ -45,9 +45,9 @@ if (today.getMinutes() >= 10) {
           "background-image: url(./weatherAppPhotos/RainNight.png)";
         edgeDiv.style = "background-color: antiquewhite;";
       } else if (currentTime > sunrise && currentTime < sunset && !isRaining) {
-        body.style = "background-image: url(./weatherAppPhotos/RainDay.png)";
+        body.style = "background-image: url(./weatherAppPhotos/ClearDay.png)";
         backgroundCover.style =
-          "background-image: url(./weatherAppPhotos/RainDay.png)";
+          "background-image: url(./weatherAppPhotos/ClearDay.png)";
         edgeDiv.style = "background-color: antiquewhite;";
       } else if ((currentTime < sunrise || currentTime > sunset) && isRaining) {
         body.style =
@@ -281,6 +281,26 @@ const cityForm = document.querySelector("#cityForm");
 cityForm.addEventListener("submit", (e) => {
   e.preventDefault();
 
+//clear hourform
+
+let formTemp = document.getElementById("formTemp");
+formTemp.textContent = '';
+let formHumid = document.getElementById("formHumid");
+formHumid.textContent = '';
+let formRain = document.getElementById("formRain");
+formRain.textContent = '';
+let formWind = document.getElementById("formWind");
+formWind.textContent = '';
+
+
+
+
+
+
+
+
+
+
   lat = cities[e.target.city.value][0];
   long = cities[e.target.city.value][1];
 
@@ -324,9 +344,9 @@ cityForm.addEventListener("submit", (e) => {
           "background-image: url(./weatherAppPhotos/RainNight.png)";
         edgeDiv.style = "background-color: antiquewhite;";
       } else if (currentTime > sunrise && currentTime < sunset && !isRaining) {
-        body.style = "background-image: url(./weatherAppPhotos/RainDay.png)";
+        body.style = "background-image: url(./weatherAppPhotos/ClearDay.png)";
         backgroundCover.style =
-          "background-image: url(./weatherAppPhotos/RainDay.png)";
+          "background-image: url(./weatherAppPhotos/ClearDay.png)";
         edgeDiv.style = "background-color: antiquewhite;";
       } else if ((currentTime < sunrise || currentTime > sunset) && isRaining) {
         body.style =
