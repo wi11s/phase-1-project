@@ -66,6 +66,7 @@ body {
     display: inline-block;
     font-size: 16px;
     border-radius: 10px;
+    cursor: pointer;
 }
 
 #lastSix {
@@ -82,6 +83,7 @@ body {
     display: inline-block;
     font-size: 16px;
     border-radius: 10px;
+    cursor: pointer;
 }
 
 /* #cityForm {
@@ -118,7 +120,10 @@ h1 {
 }
 
 h2 {
-    margin-left: 20px;
+    position:absolute;
+    bottom: 22%;
+    left: 45%;
+    font-size: medium;
 }
 
 h3 {
@@ -145,7 +150,7 @@ h4 {
 
 .list {
     display: inline;
-    color: rgb(153, 176, 161);
+    color: rgb(255, 255, 255);
     padding: 50px;
 }
 
