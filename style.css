@@ -1,9 +1,17 @@
-/* body, html {height: 100%;} */
-
 body {
-    /* background-color: rgb(153, 176, 161); */
-    background-image: url(./weatherAppPhotos/ClearNightTwo.png);
+    background-position-x: center;
+    background-position-y: top;
+    background-size: cover;
+}
 
+#lighten {
+    opacity: .5;
+    
+    position:absolute;
+    top:0px;
+    right:0px;
+    bottom:0px;
+    left:0px;
 }
 
 #backgroundCover {
@@ -12,22 +20,27 @@ body {
     right:200px;
     bottom:0px;
     left:200px;
-    
-    background-color: rgb(96, 96, 96);
-    opacity: 0.5;
+    opacity: 1;
+    background-position-x: center;
+    background-position-y: top;
+    background-size: cover;
 }
+
+
 #currentDay {
-    background-color: rgb(132, 140, 181);
+    background-color: rgb(255, 255, 255);
     position:absolute;
-    top:30px;
-    right:230px;
-    bottom:400px;
-    left:230px;
+    top: 23%;
+    right:15%;
+    bottom:34%;
+    left:15%;
     border-radius: 10px;
     border-style: solid;
-    border-width: 5px;
+    border-width: 2px;
     border-color: black;
+    opacity: 0.8;
 }
+
 #hourly {
     background-color: rgb(96, 96, 96);
     position: absolute;
@@ -36,58 +49,255 @@ body {
     bottom:20px;
     left:0px;
     
+
 }
+
 #nextSix {
     position: absolute;
-    top:20px;
-    right: 20px;
+    top: 10%;
+    right: 2%;
+    bottom: 10%;
+    background-color: black;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 10px;
 }
+
 #lastSix {
     position: absolute;
-    top:20px;
-    left:20px;
+    top: 10%;
+    left: 2%;
+    bottom: 10%;
+    background-color: black;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 10px;
 }
-form {
-    position: absolute;
-    top:600px;
-    right:200px;
-    bottom:0px;
-    left:300px;
+
+/* #cityForm {
 }
+#submit {
+} */
+
 #formOutput {
-    background-color: rgb(132, 140, 181);
+    background-color:white;
     position:absolute;
-    top:400px;
-    right:230px;
-    bottom:30px;
-    left:700px;
+    top:68%;
+    right:15%;
+    bottom:5%;
+    left:50%;
     border-radius: 10px;
     border-style: solid;
-    border-width: 5px;
+    border-width: 2px;
     border-color: black;
+    opacity: 0.8;
 }
+
+/* label {
+}   */
+
+
 h1 {
     text-align: left;
     margin-left: 20px;
+
 }
+
 h2 {
-    text-align: center;
-    color: rgb(153, 176, 161);
+    margin-left: 20px;
 }
 
 h3 {
-
     margin-left: 20px;
 }
 
 h4 {
     margin-left: 20px;
 }
-li {
+
+#hourLst {
+    position:absolute;
+    top:-6px;
+    right:50px;
+    left:50px;
+}
+
+#tempLst {
+    position:absolute;
+    top:13px;
+    right:50px;
+    left:50px;
+}
+
+.list {
+    display: inline;
+    color: rgb(255,255,255);
+    padding: 50px;
+}
+
+.hourList {
     display: inline;
     color: rgb(153, 176, 161);
-    padding: 65px;
-    font-size:x-large;
-    text-align: center;
-    margin-left: 5px;
+    padding: 48px;
 }
+
+#hourSubmit {
+    width: 100%;
+    background-color: #9f9f9f;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#hourFormDiv {
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+    position:absolute;
+    top:68%;
+    left:15%;
+    right: 52%;
+    border-width: 2px;
+    border-style: solid;
+}
+
+#citySubmit {
+    width: 100%;
+    background-color: #9f9f9f;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#cityFormDiv {
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+    position:absolute;
+    top:2%;
+    left:40%;
+    border-width: 2px;
+    border-style: solid;
+}
+
+#city, #hour, #day {
+    font-size: 16px;
+    padding: 10px 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: #9f9f9f;
+    color: white;
+}
+
+#cityLabel, #hourLabel {
+    font-size: 16px;
+    padding: 10px 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: #3e3e3e;
+    color: white;
+}
+
+#converter {
+    font-size: 16px;
+    padding: 10px 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: #9f9f9f;
+    color: white;
+    position: absolute;
+    left: 13%;
+    top: 7%;
+}
+
+    /* display: inline;
+    color: rgb(153, 176, 161);
+    padding: 50px;
+} */
+
+.hourList {
+    display: inline;
+    color: rgb(153, 176, 161);
+    padding: 48px;
+}
+
+/*  */
+
+/* The switch - the box around the slider */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+  }
+  
+  /* Hide default HTML checkbox */
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  /* The slider */
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  input:checked + .slider {
+    background-color: #2196F3;
+  }
+  
+  input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+  }
+  
+  input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+  }
+  
+  /* Rounded sliders */
+  .slider.round {
+    border-radius: 34px;
+  }
+  
+  .slider.round:before {
+    border-radius: 50%;
+  }
