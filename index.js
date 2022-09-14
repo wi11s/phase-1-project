@@ -98,9 +98,21 @@ function currentAndForm() {
         let spot = res.hourly.time.indexOf(format);
         
 
-        let currTemp = results(spot).temp;
-        let selectCurrTemp = document.getElementById("currentTemp");
+        let currTempF = results(spot).temp;
+        let currTempC = `${((parseInt((currTempF))-32)/1.8).toFixed(1)}°C`
+        let currTemp = currTempF;
+        let selectCurrTemp = document.getElementById("currentTemp")
         selectCurrTemp.innerHTML = currTemp;
+
+        let units = document.querySelector('#slider')
+        units.addEventListener('click', () => {
+            if (units.checked){ //ON
+                selectCurrTemp.innerHTML = currTempC
+            } else { //OFF
+                selectCurrTemp.innerHTML = currTempF
+            }
+
+        })
 
         let currHumid = results(spot).humid;
         let selectCurrHumid = document.getElementById("currentHumid");
@@ -127,8 +139,24 @@ function currentAndForm() {
 
         let spot = res.hourly.time.indexOf(format);
 
+        let currTempF = results(spot).temp;
+        let currTempC = `${((parseInt((currTempF))-32)/1.8).toFixed(1)}°C`
+        let currTemp = currTempF;
         let formTemp = document.getElementById("formTemp");
-        formTemp.textContent = results(spot).temp;
+        formTemp.textContent = currTemp
+        
+
+        let units = document.querySelector('#slider2')
+        units.addEventListener('click', () => {
+            if (units.checked){ //ON
+                formTemp.innerHTML = currTempC
+            } else { //OFF
+                formTemp.innerHTML = currTempF
+            }
+
+        })
+
+
         let formHumid = document.getElementById("formHumid");
         formHumid.textContent = results(spot).humid;
         let formRain = document.getElementById("formRain");
@@ -264,49 +292,7 @@ function hourlyFunction() {
 
 
 
-
-
-const cities = {
-  newYork: [40.71, -74.01],
-  washington: [38.8921, -77.0241],
-  sacramento: [38.5737, -121.4871],
-  losAngeles: [34.05, -118.24],
-  chicago: [41.85, -87.65],
-  houston: [29.76, -95.36],
-  phoenix: [33.45, -112.07],
-  philadelphia: [39.95, -75.16],
-};
-
-let lat = cities.newYork[0];
-let long = cities.newYork[1];
-
-const cityForm = document.querySelector("#cityForm");
-cityForm.addEventListener("submit", (e) => {
-  e.preventDefault();
-
-//clear hourform
-
-let formTemp = document.getElementById("formTemp");
-formTemp.textContent = '';
-let formHumid = document.getElementById("formHumid");
-formHumid.textContent = '';
-let formRain = document.getElementById("formRain");
-formRain.textContent = '';
-let formWind = document.getElementById("formWind");
-formWind.textContent = '';
-
-
-
-
-
-
-
-
-
-
-  lat = cities[e.target.city.value][0];
-  long = cities[e.target.city.value][1];
-
+function backgroundLoader() {
   if (today.getMinutes() >= 10) {
     currentTime = parseInt(`${today.getHours()}${today.getMinutes()}`);
   } else {
@@ -365,7 +351,48 @@ formWind.textContent = '';
         edgeDiv.style = "background-color: black;";
       }
     });
+}
 
+
+
+
+
+
+
+const cities = {
+  newYork: [40.71, -74.01],
+  washington: [38.8921, -77.0241],
+  sacramento: [38.5737, -121.4871],
+  losAngeles: [34.05, -118.24],
+  chicago: [41.85, -87.65],
+  houston: [29.76, -95.36],
+  phoenix: [33.45, -112.07],
+  philadelphia: [39.95, -75.16],
+};
+
+let lat = cities.newYork[0];
+let long = cities.newYork[1];
+
+const cityForm = document.querySelector("#cityForm");
+cityForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+//clear hourform
+
+  let formTemp = document.getElementById("formTemp");
+  formTemp.textContent = '';
+  let formHumid = document.getElementById("formHumid");
+  formHumid.textContent = '';
+  let formRain = document.getElementById("formRain");
+  formRain.textContent = '';
+  let formWind = document.getElementById("formWind");
+  formWind.textContent = '';
+
+  lat = cities[e.target.city.value][0];
+  long = cities[e.target.city.value][1];
+
+
+  backgroundLoader()
   currentAndForm();
   hourlyFunction();
 });
@@ -385,3 +412,7 @@ hourSubmit.addEventListener('mouseover', e => {
 hourSubmit.addEventListener('mouseleave', e => {
   hourSubmit.style['background-color'] = '#9f9f9f';
 })
+
+currentAndForm()
+hourlyFunction()
+backgroundLoader()
