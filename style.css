@@ -1,5 +1,3 @@
-/* body, html {height: 100%;} */
-
 body {
     background-position-x: center;
     background-position-y: top;
@@ -24,23 +22,23 @@ body {
     left:200px;
     opacity: 1;
     background-position-x: center;
-    background-position-y: bottom;
+    background-position-y: top;
     background-size: cover;
 }
 
 
 #currentDay {
-    background-color: rgb(132, 140, 181);
+    background-color: rgb(255, 255, 255);
     position:absolute;
-    top:30px;
-    right:230px;
-    bottom:400px;
-    left:230px;
+    top: 23%;
+    right:15%;
+    bottom:34%;
+    left:15%;
     border-radius: 10px;
     border-style: solid;
-    border-width: 5px;
+    border-width: 2px;
     border-color: black;
-    opacity: 0.9;
+    opacity: 0.8;
 }
 
 #hourly {
@@ -56,9 +54,10 @@ body {
 
 #nextSix {
     position: absolute;
-    top: 3px;
-    right: 3px;
-    background-color: #0f354b;
+    top: 10%;
+    right: 2%;
+    bottom: 10%;
+    background-color: black;
     border: none;
     color: white;
     padding: 15px 32px;
@@ -67,13 +66,15 @@ body {
     display: inline-block;
     font-size: 16px;
     border-radius: 10px;
+    cursor: pointer;
 }
 
 #lastSix {
     position: absolute;
-    top: 3px;
-    left: 3px;
-    background-color: #0f354b;
+    top: 10%;
+    left: 2%;
+    bottom: 10%;
+    background-color: black;
     border: none;
     color: white;
     padding: 15px 32px;
@@ -82,35 +83,31 @@ body {
     display: inline-block;
     font-size: 16px;
     border-radius: 10px;
+    cursor: pointer;
 }
 
-#cityForm {
-    position: absolute;
-    top:50x;
-    left:650px;
+/* #cityForm {
 }
-
 #submit {
-    position: absolute;
-    top:600px;
-    right:200px;
-    bottom:0px;
-    left:300px;
-}
+} */
 
 #formOutput {
-    background-color: rgb(132, 140, 181);
+    background-color:white;
     position:absolute;
-    top:400px;
-    right:230px;
-    bottom:30px;
-    left:700px;
+    top:68%;
+    right:15%;
+    bottom:5%;
+    left:50%;
     border-radius: 10px;
     border-style: solid;
-    border-width: 5px;
+    border-width: 2px;
     border-color: black;
-    opacity: 0.9;
+    opacity: 0.8;
 }
+
+/* label {
+}   */
+
 
 h1 {
     text-align: left;
@@ -119,7 +116,10 @@ h1 {
 }
 
 h2 {
-    margin-left: 20px;
+    position:absolute;
+    bottom: 22%;
+    left: 45%;
+    font-size: medium;
 }
 
 h3 {
@@ -146,7 +146,7 @@ h4 {
 
 .list {
     display: inline;
-    color: rgb(153, 176, 161);
+    color: rgb(255, 255, 255);
     padding: 50px;
 }
 
@@ -155,3 +155,140 @@ h4 {
     color: rgb(153, 176, 161);
     padding: 48px;
 }
+
+#hourSubmit {
+    width: 100%;
+    background-color: #9f9f9f;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#hourFormDiv {
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+    position:absolute;
+    top:68%;
+    left:15%;
+    right: 52%;
+    border-width: 2px;
+    border-style: solid;
+}
+
+#citySubmit {
+    width: 100%;
+    background-color: #9f9f9f;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#cityFormDiv {
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+    position:absolute;
+    top:2%;
+    left:40%;
+    border-width: 2px;
+    border-style: solid;
+}
+
+#city, #hour, #day {
+    font-size: 16px;
+    padding: 10px 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: #9f9f9f;
+    color: white;
+}
+
+#cityLabel, #hourLabel {
+    font-size: 16px;
+    padding: 10px 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: #3e3e3e;
+    color: white;
+}
+
+#converter {
+    font-size: 16px;
+    padding: 10px 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: #9f9f9f;
+    color: white;
+    position: absolute;
+    left: 13%;
+    top: 7%;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+  }
+  
+  /* Hide default HTML checkbox */
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  /* The slider */
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  input:checked + .slider {
+    background-color: #2196F3;
+  }
+  
+  input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+  }
+  
+  input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+  }
+  
+  /* Rounded sliders */
+  .slider.round {
+    border-radius: 34px;
+  }
+  
+  .slider.round:before {
+    border-radius: 50%;
+  }
