@@ -9,32 +9,50 @@
   <body>
     <div id="lighten"></div>
     <div id="backgroundCover"></div>
-    <form id="submit">
+    <div id="cityFormDiv">	
+      <form id="cityForm">	
+        <label id="cityLabel">City</label>	
+        <select id="city">	
+          <option value="washington">Washington</option>	
+          <option value="newYork">New York</option>	
+          <option value="sacramento">Sacramento</option>	
+          <option value="losAngeles">Los Angeles</option>	
+          <option value="chicago">Chicago</option>	
+          <option value="houston">Houston</option>	
+          <option value="phoenix">Phoenix</option>	
+          <option value="philadelphia">Philadelphia</option>	
+        </select>	
+        <input type="submit" value="Submit" id="citySubmit">	
+      </form>	
+    </div>	
+    <div id="hourFormDiv">	
+      <form id="submit">	
+        <label id='hourLabel'>Get Specific Data</label>
       <select id="hour">
-        <option value="0">00:00</option>
-        <option value="1">01:00</option>
-        <option value="2">02:00</option>
-        <option value="3">03:00</option>
-        <option value="4">04:00</option>
-        <option value="5">05:00</option>
-        <option value="6">06:00</option>
-        <option value="7">07:00</option>
-        <option value="8">08:00</option>
-        <option value="9">09:00</option>
-        <option value="10">10:00</option>
-        <option value="11">11:00</option>
-        <option value="12">12:00</option>
-        <option value="13">13:00</option>
-        <option value="14">14:00</option>
-        <option value="15">15:00</option>
-        <option value="16">16:00</option>
-        <option value="17">17:00</option>
-        <option value="18">18:00</option>
-        <option value="19">19:00</option>
-        <option value="20">20:00</option>
-        <option value="21">21:00</option>
-        <option value="22">22:00</option>
-        <option value="23">23:00</option>
+        <option value="00:00">00:00</option>
+        <option value="01:00">01:00</option>
+        <option value="02:00">02:00</option>
+        <option value="03:00">03:00</option>
+        <option value="04:00">04:00</option>
+        <option value="05:00">05:00</option>
+        <option value="06:00">06:00</option>
+        <option value="07:00">07:00</option>
+        <option value="08:00">08:00</option>
+        <option value="09:00">09:00</option>
+        <option value="10:00">10:00</option>
+        <option value="11:00">11:00</option>
+        <option value="12:00">12:00</option>
+        <option value="13:00">13:00</option>
+        <option value="14:00">14:00</option>
+        <option value="15:00">15:00</option>
+        <option value="16:00">16:00</option>
+        <option value="17:00">17:00</option>
+        <option value="18:00">18:00</option>
+        <option value="19:00">19:00</option>
+        <option value="20:00">20:00</option>
+        <option value="21:00">21:00</option>
+        <option value="22:00">22:00</option>
+        <option value="23:00">23:00</option>
       </select>
       <select id="day">
         <option value="0">Today</option>
@@ -46,51 +64,47 @@
         <option value="6">Six days from now</option>
       </select>
 
-      <input type="submit" value="Submit">
-    </form>
+      <input type="submit" value="Submit" id="hourSubmit">	
+    </form>	
+  </div>
 
     <div id="formOutput">
-        <!-- <h2>Date, time</h2> Probably needs id and js code -->
         <h1 id="formTemp"></h1>
-        <h4 id="formHumid"></h4>
+        <h3 id="formHumid"></h3>
         <h4 id="formRain"></h4>
         <h4 id="formWind"></h4>
-      </div>
-  
+    </div>
+
     <div id="currentDay">
       <h1 id="currentTemp"></h1>
-      <h3 id="currentHumid"></h3>
+      <h4 id="currentHumid"></h4>
       <h4 id="currentRain"></h4>
       <h4 id="currentWind"></h4>
-    <div id="hourly">
+
+      <div id="hourly">
         <!-- <h2>Hourly Temp</h2> -->
-        <!-- not sure what hourLst is vs tempLst -->
-        <ul id="hourLst">	
-          <li class='hourList'></li>	
-          <li class='hourList'></li>	
-          <li class='hourList'></li>	
-          <li class='hourList'></li>	
-          <li class='hourList'></li>	
-          <li class='hourList'></li>	
-        </ul>	
-        <ul id="tempLst">	
-          <li class='list' id="hourOne"></li>	
-          <li class='list' id="hourTwo"></li>	
-          <li class='list' id="hourThree"></li>	
-          <li class='list' id="hourFour"></li>	
-          <li class='list' id="hourFive"></li>	
-          <li class='list' id="hourSix"></li>	
+        <ul id="hourLst">
+          <li class='hourList' id="hour1"></li>
+          <li class='hourList' id="hour2"></li>
+          <li class='hourList' id="hour3"></li>
+          <li class='hourList' id="hour4"></li>
+          <li class='hourList' id="hour5"></li>
+          <li class='hourList' id="hour6"></li>
+        </ul>
+        <ul id="tempLst">
+          <li class='list' id="tempOne"></li>
+          <li class='list' id="tempTwo"></li>
+          <li class='list' id="tempThree"></li>
+          <li class='list' id="tempFour"></li>
+          <li class='list' id="tempFive"></li>
+          <li class='list' id="tempSix"></li>
         </ul>
         <button id="nextSix">NEXT</button>
         <button id="lastSix">LAST</button>
       </div>
     </div>
     
-    
-
-    <script src="./index.js"></script>
-    <script src="background.js"></script>
-    <script src="hourly.js"></script>
+    <script src="index.js"></script>
   </body>
 
 </html>
