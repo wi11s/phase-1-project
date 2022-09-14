@@ -84,7 +84,13 @@ body {
     border-radius: 10px;
 }
 
-form {
+#cityForm {
+    position: absolute;
+    top:50x;
+    left:650px;
+}
+
+#submit {
     position: absolute;
     top:600px;
     right:200px;
