@@ -130,6 +130,13 @@ h4 {
     margin-left: 20px;
 }
 
+h5 {
+    position:absolute;
+    left: 55%;
+    top: 15%;
+    font-size:x-large;
+}
+
 #hourLst {
     position:absolute;
     top:-6px;
@@ -166,6 +173,31 @@ h4 {
     border-radius: 4px;
     cursor: pointer;
 }
+
+#formTemp {
+    position:absolute;
+    top: 0%;
+    left: 5%;
+}
+
+#formRain {
+    position: absolute;
+    top: 47%;
+    left: 3%;
+}
+
+#formHumid {
+    position: absolute;
+    top: 27%;
+    left: 3%;
+}
+
+#formWind {
+    position: absolute;
+    top: 67%;
+    left: 3%;
+}
+
 
 #hourFormDiv {
     border-radius: 5px;
@@ -224,7 +256,7 @@ h4 {
 .switchOne {
     position: absolute;
     top: 11%;
-    left: 25%;
+    left: 30%;
     display: inline-block;
     width: 60px;
     height: 34px;
@@ -233,7 +265,7 @@ h4 {
 .switchTwo {
     position: absolute;
     top: 7%;
-    left: 12%;
+    left: 15%;
     display: inline-block;
     width: 60px;
     height: 34px;

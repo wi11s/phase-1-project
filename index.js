@@ -9,6 +9,15 @@ if (today.getMinutes() >= 10) {
     currentTime = parseInt(`${today.getHours()}0${today.getMinutes()}`);
   }
 
+if (currentTime>=0400 && currentTime<+1200) {
+  document.querySelector('#greeting').textContent = "Good morning, gamer!"
+} else if (currentTime>1200 && currentTime<=1900) {
+  document.querySelector('#greeting').textContent = "Good afternoon."
+} else if ((currentTime>1900 && currentTime<=2359)||currentTime<0400) {
+  document.querySelector('#greeting').textContent = "Good evening."
+}
+
+
   const body = document.querySelector("body");
 
   const edgeDiv = document.querySelector("#lighten");
@@ -36,6 +45,7 @@ if (today.getMinutes() >= 10) {
 
       // currentTime = 1200
       // isRaining = false
+
 
       if (currentTime > sunrise && currentTime < sunset && isRaining) {
         body.style = "background-image: url(./weatherAppPhotos/RainNight.png)";
