@@ -132,6 +132,7 @@ function currentAndForm() {
       let submit = document.getElementById("submit");
       submit.addEventListener("submit", (e) => {
         e.preventDefault();
+        document.querySelector('.switchOne').style = "visibility: visible;"
 
         let format = `${today.getFullYear()}-0${today.getMonth() + 1}-${
           parseInt(today.getDate()) + parseInt(day.value)
@@ -376,6 +377,8 @@ let long = cities.newYork[1];
 const cityForm = document.querySelector("#cityForm");
 cityForm.addEventListener("submit", (e) => {
   e.preventDefault();
+  document.querySelector('.switchOne').style = "visibility: hidden;"
+  
 
 //clear hourform
 
