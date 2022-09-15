@@ -98,7 +98,7 @@ function currentAndForm() {
         let format = `${today.getFullYear()}-${currentMonth}-${currentDay}T${hourlyTime}:00`;
         let spot = res.hourly.time.indexOf(format);
         console.log(format)
-        
+        console.log(spot)
 
         let currTempF = results(spot).temp;
         let currTempC = `${((parseInt((currTempF))-32)/1.8).toFixed(1)}°C`
@@ -135,11 +135,13 @@ function currentAndForm() {
       submit.addEventListener("submit", (e) => {
         e.preventDefault();
 
+        document.querySelector('#switchTwo').style = "visibility: visible"
         let format = `${today.getFullYear()}-${currentMonth}-${
           parseInt(today.getDate()) + parseInt(day.value)
         }T${e.target.hour.value}`;
-
         let spot = res.hourly.time.indexOf(format);
+        console.log(format)
+        console.log(spot)
 
         let currTempF = results(spot).temp;
         let currTempC = `${((parseInt((currTempF))-32)/1.8).toFixed(1)}°C`
@@ -381,7 +383,7 @@ let long = cities.newYork[1];
 const cityForm = document.querySelector("#cityForm");
 cityForm.addEventListener("submit", (e) => {
   e.preventDefault();
-
+  document.querySelector('#switchTwo').style = "visibility: hidden"
 //clear hourform
 
   let formTemp = document.getElementById("formTemp");
@@ -418,23 +420,8 @@ hourSubmit.addEventListener('mouseleave', e => {
   hourSubmit.style['background-color'] = '#9f9f9f';
 })
 
+
 currentAndForm()
 hourlyFunction()
 backgroundLoader()
 
-//Current day
-//id = "currentDay"
-
-//Hours (shows six at a time up to 24)
-//button for next six id = nextSix
-//button for previous six id = lastSix
-
-
-//Background is later
-
-
-//Form
-//querySelector 'form'
-
-//Form output
-//id= "formOutput"
