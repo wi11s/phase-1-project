@@ -1,6 +1,5 @@
 let today = new Date();
 
-
 if (today.getMinutes() >= 10) {
     currentTime = parseInt(`${today.getHours()}${today.getMinutes()}`);
   } else {
@@ -21,7 +20,6 @@ fiveDaysFromNow.textContent = `${today.getMonth() + 1}/${today.getDate()+5}`
 
 const sixDaysFromNow = document.querySelector('#feSeven')
 sixDaysFromNow.textContent = `${today.getMonth() + 1}/${today.getDate()+6}`
-
 
   const body = document.querySelector("body");
 
@@ -48,37 +46,8 @@ fetch(
     let isRaining =
       obj.hourly.precipitation[parseInt(today.getHours())] > 0.05;
 
-    // currentTime = 1200
-    // isRaining = false
-
-
-    if (currentTime > sunrise && currentTime < sunset && isRaining) {
-      body.style = "background-image: url(./weatherAppPhotos/RainNight.png)";
-      backgroundCover.style =
-        "background-image: url(./weatherAppPhotos/RainNight.png)";
-      edgeDiv.style = "background-color: antiquewhite;";
-    } else if (currentTime > sunrise && currentTime < sunset && !isRaining) {
-      body.style = "background-image: url(./weatherAppPhotos/ClearDay.png)";
-      backgroundCover.style =
-        "background-image: url(./weatherAppPhotos/ClearDay.png)";
-      edgeDiv.style = "background-color: antiquewhite;";
-    } else if ((currentTime < sunrise || currentTime > sunset) && isRaining) {
-      body.style =
-        "background-image: url(./weatherAppPhotos/NightLightning.png)";
-      backgroundCover.style =
-        "background-image: url(./weatherAppPhotos/NightLightning.png)";
-      edgeDiv.style = "background-color: black;";
-    } else {
-      body.style =
-        "background-image: url(./weatherAppPhotos/ClearNightTwo.png)";
-      backgroundCover.style =
-        "background-image: url(./weatherAppPhotos/ClearNightTwo.png)";
-      edgeDiv.style = "background-color: black;";
-    }
+    backgroundLoader()
   });
-
-
-
 
 function currentAndForm() {
   fetch(
@@ -297,15 +266,7 @@ function hourlyFunction() {
       
     });
   }
-
-
-
 }
-
-
-
-
-
 
 function backgroundLoader() {
   if (today.getMinutes() >= 10) {
@@ -339,8 +300,8 @@ function backgroundLoader() {
       let isRaining =
         obj.hourly.precipitation[parseInt(today.getHours())] > 0.05;
 
-      // currentTime = 0000
-      // isRaining = false
+      // currentTime = 1100
+      // isRaining = true
 
       if (currentTime > sunrise && currentTime < sunset && isRaining) {
         body.style = "background-image: url(./weatherAppPhotos/RainNight.png)";
@@ -376,12 +337,6 @@ function backgroundLoader() {
       }
     });
 }
-
-
-
-
-
-
 
 const cities = {
   newYork: [40.71, -74.01],
