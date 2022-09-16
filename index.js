@@ -1,8 +1,6 @@
 let today = new Date();
 
 
-
-
 if (today.getMinutes() >= 10) {
     currentTime = parseInt(`${today.getHours()}${today.getMinutes()}`);
   } else {
@@ -122,9 +120,9 @@ function currentAndForm() {
         }
 
 
-        let format = `${today.getFullYear()}-0${today.getMonth() + 1}-${today.getDate()}T${hourlyTime}:00`;
+        let format = `${today.getFullYear()}-${currentMonth}-${currentDay}T${hourlyTime}:00`;
         let spot = res.hourly.time.indexOf(format);
-        
+        console.log(format)
 
         let currTempF = results(spot).temp;
         let currTempC = `${((parseInt((currTempF))-32)/1.8).toFixed(1)}°C`
@@ -160,9 +158,8 @@ function currentAndForm() {
       let submit = document.getElementById("submit");
       submit.addEventListener("submit", (e) => {
         e.preventDefault();
-        document.querySelector('.switchOne').style = "visibility: visible;"
-
-        let format = `${today.getFullYear()}-0${today.getMonth() + 1}-${
+        document.querySelector('#switchTwo').style = "visibility: visible"  
+        let format = `${today.getFullYear()}-${currentMonth}-${
           parseInt(today.getDate()) + parseInt(day.value)
         }T${e.target.hour.value}`;
 
@@ -405,7 +402,7 @@ let long = cities.newYork[1];
 const cityForm = document.querySelector("#cityForm");
 cityForm.addEventListener("submit", (e) => {
   e.preventDefault();
-  document.querySelector('.switchOne').style = "visibility: hidden;"
+  document.querySelector('#switchTwo').style = "visibility: hidden"
   
 
 //clear hourform
@@ -430,7 +427,7 @@ cityForm.addEventListener("submit", (e) => {
 
 const citySubmitButton = document.querySelector('#citySubmit')
 citySubmitButton.addEventListener('mouseover', e => {
-  citySubmitButton.style['background-color'] = 'blue';
+  citySubmitButton.style['background-color'] = '#1964a1';
 })
 citySubmitButton.addEventListener('mouseleave', e => {
   citySubmitButton.style['background-color'] = '#9f9f9f';
@@ -438,7 +435,7 @@ citySubmitButton.addEventListener('mouseleave', e => {
 
 const hourSubmit = document.querySelector('#hourSubmit')
 hourSubmit.addEventListener('mouseover', e => {
-  hourSubmit.style['background-color'] = 'blue';
+  hourSubmit.style['background-color'] = '#1964a1';
 })
 hourSubmit.addEventListener('mouseleave', e => {
   hourSubmit.style['background-color'] = '#9f9f9f';

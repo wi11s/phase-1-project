@@ -5,6 +5,10 @@
     <title>WeatherApp</title>
     <link rel="stylesheet" type="text/css" href="style.css"/>
     <link rel="icon" type="image/x-icon" href="weatherAppPhotos/favicon.png">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.css">
   </head>
 
   <body>
@@ -70,19 +74,21 @@
     </div>
 
     <div id="formOutput">
-      <label class="switchOne" style="visibility:hidden">
+      <label id="switchTwo" style="visibility: hidden">
         <input type="checkbox" id="slider2">
         <span class="slider round"></span>
       </label>
         <h1 id="formTemp"></h1>
-        <h3 id="formHumid"></h3>
+        <h4 id="formHumid"></h4>
         <h4 id="formRain"></h4>
         <h4 id="formWind"></h4>
     </div>
 
     <div id="currentDay">
-      <h5 id="greeting"></h5>
-      <label class="switchTwo">
+      <hr id="topLine">
+      <hr id="bottomLine">
+      <h1 id="greeting"></h1>
+      <label id="switchOne">
         <input type="checkbox" id="slider">
         <span class="slider round"></span>
       </label>
