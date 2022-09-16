@@ -18,71 +18,77 @@ if (currentTime>=0400 && currentTime<+1200) {
 }
 
 
+
+
+const twoDaysFromNow = document.querySelector('#feThree')
+twoDaysFromNow.textContent = `${today.getMonth() + 1}-${today.getDate()+2}`
+
+const threeDaysFromNow = document.querySelector('#feFour')
+threeDaysFromNow.textContent = `${today.getMonth() + 1}-${today.getDate()+3}`
+
+const fourDaysFromNow = document.querySelector('#feFive')
+fourDaysFromNow.textContent = `${today.getMonth() + 1}-${today.getDate()+4}`
+
+const fiveDaysFromNow = document.querySelector('#feSix')
+fiveDaysFromNow.textContent = `${today.getMonth() + 1}-${today.getDate()+5}`
+
+const sixDaysFromNow = document.querySelector('#feSeven')
+sixDaysFromNow.textContent = `${today.getMonth() + 1}-${today.getDate()+6}`
+
+
   const body = document.querySelector("body");
 
   const edgeDiv = document.querySelector("#lighten");
 
-  fetch(
-    `https://api.open-meteo.com/v1/forecast?latitude=38.8921&longitude=-77.0241&hourly=temperature_2m,relativehumidity_2m,precipitation,windspeed_10m,winddirection_10m&daily=sunrise,sunset&temperature_unit=fahrenheit&windspeed_unit=mph&precipitation_unit=inch&timezone=America%2FNew_York`
-  )
-    .then((res) => res.json())
-    .then((obj) => {
-      let sunrise = parseInt(
-        `${obj.daily.sunrise[0].slice(11, 13)}${obj.daily.sunrise[0].slice(
-          14,
-          16
-        )}`
-      );
-      let sunset = parseInt(
-        `${obj.daily.sunset[0].slice(11, 13)}${obj.daily.sunset[0].slice(
-          14,
-          16
-        )}`
-      );
+fetch(
+  `https://api.open-meteo.com/v1/forecast?latitude=38.8921&longitude=-77.0241&hourly=temperature_2m,relativehumidity_2m,precipitation,windspeed_10m,winddirection_10m&daily=sunrise,sunset&temperature_unit=fahrenheit&windspeed_unit=mph&precipitation_unit=inch&timezone=America%2FNew_York`
+)
+  .then((res) => res.json())
+  .then((obj) => {
+    let sunrise = parseInt(
+      `${obj.daily.sunrise[0].slice(11, 13)}${obj.daily.sunrise[0].slice(
+        14,
+        16
+      )}`
+    );
+    let sunset = parseInt(
+      `${obj.daily.sunset[0].slice(11, 13)}${obj.daily.sunset[0].slice(
+        14,
+        16
+      )}`
+    );
 
-      let isRaining =
-        obj.hourly.precipitation[parseInt(today.getHours())] > 0.05;
+    let isRaining =
+      obj.hourly.precipitation[parseInt(today.getHours())] > 0.05;
 
-      // currentTime = 1200
-      // isRaining = false
-
-
-      if (currentTime > sunrise && currentTime < sunset && isRaining) {
-        body.style = "background-image: url(./weatherAppPhotos/RainNight.png)";
-        backgroundCover.style =
-          "background-image: url(./weatherAppPhotos/RainNight.png)";
-        edgeDiv.style = "background-color: antiquewhite;";
-      } else if (currentTime > sunrise && currentTime < sunset && !isRaining) {
-        body.style = "background-image: url(./weatherAppPhotos/ClearDay.png)";
-        backgroundCover.style =
-          "background-image: url(./weatherAppPhotos/ClearDay.png)";
-        edgeDiv.style = "background-color: antiquewhite;";
-      } else if ((currentTime < sunrise || currentTime > sunset) && isRaining) {
-        body.style =
-          "background-image: url(./weatherAppPhotos/NightLightning.png)";
-        backgroundCover.style =
-          "background-image: url(./weatherAppPhotos/NightLightning.png)";
-        edgeDiv.style = "background-color: black;";
-      } else {
-        body.style =
-          "background-image: url(./weatherAppPhotos/ClearNightTwo.png)";
-        backgroundCover.style =
-          "background-image: url(./weatherAppPhotos/ClearNightTwo.png)";
-        edgeDiv.style = "background-color: black;";
-      }
-    });
+    // currentTime = 1200
+    // isRaining = false
 
 
-
-
-
-
-
-
-
-
-
-
+    if (currentTime > sunrise && currentTime < sunset && isRaining) {
+      body.style = "background-image: url(./weatherAppPhotos/RainNight.png)";
+      backgroundCover.style =
+        "background-image: url(./weatherAppPhotos/RainNight.png)";
+      edgeDiv.style = "background-color: antiquewhite;";
+    } else if (currentTime > sunrise && currentTime < sunset && !isRaining) {
+      body.style = "background-image: url(./weatherAppPhotos/ClearDay.png)";
+      backgroundCover.style =
+        "background-image: url(./weatherAppPhotos/ClearDay.png)";
+      edgeDiv.style = "background-color: antiquewhite;";
+    } else if ((currentTime < sunrise || currentTime > sunset) && isRaining) {
+      body.style =
+        "background-image: url(./weatherAppPhotos/NightLightning.png)";
+      backgroundCover.style =
+        "background-image: url(./weatherAppPhotos/NightLightning.png)";
+      edgeDiv.style = "background-color: black;";
+    } else {
+      body.style =
+        "background-image: url(./weatherAppPhotos/ClearNightTwo.png)";
+      backgroundCover.style =
+        "background-image: url(./weatherAppPhotos/ClearNightTwo.png)";
+      edgeDiv.style = "background-color: black;";
+    }
+  });
 
 
 
@@ -101,6 +107,18 @@ function currentAndForm() {
           hourlyTime = today.getHours();
         } else {
           hourlyTime = `0${today.getHours()}`;
+        }
+
+        if (today.getDate() >= 10) {
+          currentDay = (today.getDate())
+        } else { 
+          currentDay = (`0${today.getDate()}`)
+        }
+        
+        if (today.getMonth() + 1 >=10){
+          currentMonth = (today.getMonth() + 1)
+        } else {
+          currentMonth = (`0${today.getMonth() + 1}`)
         }
 
 
