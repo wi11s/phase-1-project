@@ -139,7 +139,7 @@ function currentAndForm() {
 
         let currWind = results(spot).wind;
         let selectCurrWind = document.getElementById("currentWind");
-        selectCurrWind.innerHTML = currWind;
+        selectCurrWind.innerHTML = `Wind: ${currWind}`;
 
       }
       current();
@@ -177,7 +177,7 @@ function currentAndForm() {
         let formRain = document.getElementById("formRain");
         formRain.textContent = results(spot).rain;
         let formWind = document.getElementById("formWind");
-        formWind.textContent = results(spot).wind;
+        formWind.textContent = `Wind: ${results(spot).wind}`;
       });
 
       function results(indexNumber) {
