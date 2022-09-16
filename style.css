@@ -117,7 +117,7 @@ h1 {
 
 h2 {
     position:absolute;
-    bottom: 22%;
+    bottom: 20%;
     left: 45%;
     font-size: medium;
 }
@@ -135,22 +135,20 @@ h3 {
 #currentHumid {
     position:absolute;
     left: 3%;
-    top: 33%
+    top: 34%
 }
 
 #currentWind {
     position:absolute;
     left: 79%;
-    top: 33%
+    top: 34%
 }
 
 #currentRain {
     position:absolute;
     left: 39%;
-    top: 33%
+    top: 34%
 }
-
-
 
 #greeting {
     position: absolute;
@@ -171,13 +169,13 @@ h3 {
 }
 
 #topLine {
-    border-top: 2px solid rgb(159, 159, 159);
+    border-top: 3px solid rgb(130, 130, 130);
     position:relative;
-    top:19%;
+    top:15%;
 }
 
 #bottomLine {
-    border-top: 2px solid rgb(159, 159, 159);
+    border-top: 2px solid white;
     position:relative;
     top:20%;
 }
@@ -187,14 +185,14 @@ h3 {
     position:absolute;
     top:5%;   
     left:15%;
-    right: 15%;
+    right: 14%;
 }
 
 #tempLst {
     position:absolute;
     top:45%;
     left:15%;
-    right: 15%;
+    right: 14%;
 }
 
 .list {

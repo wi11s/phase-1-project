@@ -7,31 +7,20 @@ if (today.getMinutes() >= 10) {
     currentTime = parseInt(`${today.getHours()}0${today.getMinutes()}`);
   }
 
-if (currentTime>=0400 && currentTime<+1200) {
-  document.querySelector('#greeting').textContent = "Good morning, gamer!"
-} else if (currentTime>1200 && currentTime<=1900) {
-  document.querySelector('#greeting').textContent = "Good afternoon."
-} else if ((currentTime>1900 && currentTime<=2359)||currentTime<0400) {
-  document.querySelector('#greeting').textContent = "Good evening."
-}
-
-
-
-
 const twoDaysFromNow = document.querySelector('#feThree')
-twoDaysFromNow.textContent = `${today.getMonth() + 1}-${today.getDate()+2}`
+twoDaysFromNow.textContent = `${today.getMonth() + 1}/${today.getDate()+2}`
 
 const threeDaysFromNow = document.querySelector('#feFour')
-threeDaysFromNow.textContent = `${today.getMonth() + 1}-${today.getDate()+3}`
+threeDaysFromNow.textContent = `${today.getMonth() + 1}/${today.getDate()+3}`
 
 const fourDaysFromNow = document.querySelector('#feFive')
-fourDaysFromNow.textContent = `${today.getMonth() + 1}-${today.getDate()+4}`
+fourDaysFromNow.textContent = `${today.getMonth() + 1}/${today.getDate()+4}`
 
 const fiveDaysFromNow = document.querySelector('#feSix')
-fiveDaysFromNow.textContent = `${today.getMonth() + 1}-${today.getDate()+5}`
+fiveDaysFromNow.textContent = `${today.getMonth() + 1}/${today.getDate()+5}`
 
 const sixDaysFromNow = document.querySelector('#feSeven')
-sixDaysFromNow.textContent = `${today.getMonth() + 1}-${today.getDate()+6}`
+sixDaysFromNow.textContent = `${today.getMonth() + 1}/${today.getDate()+6}`
 
 
   const body = document.querySelector("body");
@@ -279,7 +268,7 @@ function hourlyFunction() {
       } else if (Math.ceil(hour/24) === 2) {
         whatDayTag.textContent = 'Tomorrow'
       } else {
-        whatDayTag.textContent = `${today.getMonth() + 1}-${today.getDate()+Math.floor(hour/24)}`
+        whatDayTag.textContent = `${today.getMonth() + 1}/${today.getDate()+Math.floor(hour/24)}`
       }
       
     });
@@ -356,25 +345,34 @@ function backgroundLoader() {
       if (currentTime > sunrise && currentTime < sunset && isRaining) {
         body.style = "background-image: url(./weatherAppPhotos/RainNight.png)";
         backgroundCover.style =
-          "background-image: url(./weatherAppPhotos/RainNight.png)";
+          "background-image: url(./weatherAppPhotos/RainNight.png)\;background-position-y: top;";
         edgeDiv.style = "background-color: antiquewhite;";
       } else if (currentTime > sunrise && currentTime < sunset && !isRaining) {
         body.style = "background-image: url(./weatherAppPhotos/ClearDay.png)";
         backgroundCover.style =
-          "background-image: url(./weatherAppPhotos/ClearDay.png)";
+          "background-image: url(./weatherAppPhotos/ClearDay.png)\;background-position-y: top;";
         edgeDiv.style = "background-color: antiquewhite;";
       } else if ((currentTime < sunrise || currentTime > sunset) && isRaining) {
         body.style =
           "background-image: url(./weatherAppPhotos/NightLightning.png)";
         backgroundCover.style =
-          "background-image: url(./weatherAppPhotos/NightLightning.png)";
+          "background-image: url(./weatherAppPhotos/NightLightning.png)\;background-position-y: bottom;";
         edgeDiv.style = "background-color: black;";
       } else {
         body.style =
           "background-image: url(./weatherAppPhotos/ClearNightTwo.png)";
         backgroundCover.style =
-          "background-image: url(./weatherAppPhotos/ClearNightTwo.png)";
+          "background-image: url(./weatherAppPhotos/ClearNightTwo.png)\;background-position-y: top;";
         edgeDiv.style = "background-color: black;";
+      }
+
+
+      if (currentTime>sunrise && currentTime<1200) {
+        document.querySelector('#greeting').textContent = "Good morning, gamer!"
+      } else if (currentTime>=1200 && currentTime<sunset) {
+        document.querySelector('#greeting').textContent = "Good afternoon."
+      } else if ((currentTime>=sunset && currentTime<=2359)||currentTime<sunrise) {
+        document.querySelector('#greeting').textContent = "Good evening."
       }
     });
 }
