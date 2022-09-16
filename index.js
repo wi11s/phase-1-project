@@ -8,61 +8,87 @@ if (today.getMinutes() >= 10) {
   } else {
     currentTime = parseInt(`${today.getHours()}0${today.getMinutes()}`);
   }
- 
+
+if (currentTime>=0400 && currentTime<+1200) {
+  document.querySelector('#greeting').textContent = "Good morning, gamer!"
+} else if (currentTime>1200 && currentTime<=1900) {
+  document.querySelector('#greeting').textContent = "Good afternoon."
+} else if ((currentTime>1900 && currentTime<=2359)||currentTime<0400) {
+  document.querySelector('#greeting').textContent = "Good evening."
+}
+
+
+
+
+const twoDaysFromNow = document.querySelector('#feThree')
+twoDaysFromNow.textContent = `${today.getMonth() + 1}-${today.getDate()+2}`
+
+const threeDaysFromNow = document.querySelector('#feFour')
+threeDaysFromNow.textContent = `${today.getMonth() + 1}-${today.getDate()+3}`
+
+const fourDaysFromNow = document.querySelector('#feFive')
+fourDaysFromNow.textContent = `${today.getMonth() + 1}-${today.getDate()+4}`
+
+const fiveDaysFromNow = document.querySelector('#feSix')
+fiveDaysFromNow.textContent = `${today.getMonth() + 1}-${today.getDate()+5}`
+
+const sixDaysFromNow = document.querySelector('#feSeven')
+sixDaysFromNow.textContent = `${today.getMonth() + 1}-${today.getDate()+6}`
 
 
   const body = document.querySelector("body");
 
   const edgeDiv = document.querySelector("#lighten");
 
-  fetch(
-    `https://api.open-meteo.com/v1/forecast?latitude=38.8921&longitude=-77.0241&hourly=temperature_2m,relativehumidity_2m,precipitation,windspeed_10m,winddirection_10m&daily=sunrise,sunset&temperature_unit=fahrenheit&windspeed_unit=mph&precipitation_unit=inch&timezone=America%2FNew_York`
-  )
-    .then((res) => res.json())
-    .then((obj) => {
-      let sunrise = parseInt(
-        `${obj.daily.sunrise[0].slice(11, 13)}${obj.daily.sunrise[0].slice(
-          14,
-          16
-        )}`
-      );
-      let sunset = parseInt(
-        `${obj.daily.sunset[0].slice(11, 13)}${obj.daily.sunset[0].slice(
-          14,
-          16
-        )}`
-      );
+fetch(
+  `https://api.open-meteo.com/v1/forecast?latitude=38.8921&longitude=-77.0241&hourly=temperature_2m,relativehumidity_2m,precipitation,windspeed_10m,winddirection_10m&daily=sunrise,sunset&temperature_unit=fahrenheit&windspeed_unit=mph&precipitation_unit=inch&timezone=America%2FNew_York`
+)
+  .then((res) => res.json())
+  .then((obj) => {
+    let sunrise = parseInt(
+      `${obj.daily.sunrise[0].slice(11, 13)}${obj.daily.sunrise[0].slice(
+        14,
+        16
+      )}`
+    );
+    let sunset = parseInt(
+      `${obj.daily.sunset[0].slice(11, 13)}${obj.daily.sunset[0].slice(
+        14,
+        16
+      )}`
+    );
 
-      let isRaining =
-        obj.hourly.precipitation[parseInt(today.getHours())] > 0.05;
+    let isRaining =
+      obj.hourly.precipitation[parseInt(today.getHours())] > 0.05;
 
-      // currentTime = 1200
-      // isRaining = false
+    // currentTime = 1200
+    // isRaining = false
 
-      if (currentTime > sunrise && currentTime < sunset && isRaining) {
-        body.style = "background-image: url(./weatherAppPhotos/RainNight.png)";
-        backgroundCover.style =
-          "background-image: url(./weatherAppPhotos/RainNight.png)";
-        edgeDiv.style = "background-color: antiquewhite;";
-      } else if (currentTime > sunrise && currentTime < sunset && !isRaining) {
-        body.style = "background-image: url(./weatherAppPhotos/ClearDay.png)";
-        backgroundCover.style =
-          "background-image: url(./weatherAppPhotos/ClearDay.png)";
-        edgeDiv.style = "background-color: antiquewhite;";
-      } else if ((currentTime < sunrise || currentTime > sunset) && isRaining) {
-        body.style =
-          "background-image: url(./weatherAppPhotos/NightLightning.png)";
-        backgroundCover.style =
-          "background-image: url(./weatherAppPhotos/NightLightning.png)";
-        edgeDiv.style = "background-color: black;";
-      } else {
-        body.style =
-          "background-image: url(./weatherAppPhotos/ClearNightTwo.png)";
-        backgroundCover.style =
-          "background-image: url(./weatherAppPhotos/ClearNightTwo.png)";
-        edgeDiv.style = "background-color: black;";
-      }
-    });
+
+    if (currentTime > sunrise && currentTime < sunset && isRaining) {
+      body.style = "background-image: url(./weatherAppPhotos/RainNight.png)";
+      backgroundCover.style =
+        "background-image: url(./weatherAppPhotos/RainNight.png)";
+      edgeDiv.style = "background-color: antiquewhite;";
+    } else if (currentTime > sunrise && currentTime < sunset && !isRaining) {
+      body.style = "background-image: url(./weatherAppPhotos/ClearDay.png)";
+      backgroundCover.style =
+        "background-image: url(./weatherAppPhotos/ClearDay.png)";
+      edgeDiv.style = "background-color: antiquewhite;";
+    } else if ((currentTime < sunrise || currentTime > sunset) && isRaining) {
+      body.style =
+        "background-image: url(./weatherAppPhotos/NightLightning.png)";
+      backgroundCover.style =
+        "background-image: url(./weatherAppPhotos/NightLightning.png)";
+      edgeDiv.style = "background-color: black;";
+    } else {
+      body.style =
+        "background-image: url(./weatherAppPhotos/ClearNightTwo.png)";
+      backgroundCover.style =
+        "background-image: url(./weatherAppPhotos/ClearNightTwo.png)";
+      edgeDiv.style = "background-color: black;";
+    }
+  });
 
 
 
@@ -94,11 +120,11 @@ function currentAndForm() {
         } else {
           currentMonth = (`0${today.getMonth() + 1}`)
         }
-        
+
+
         let format = `${today.getFullYear()}-${currentMonth}-${currentDay}T${hourlyTime}:00`;
         let spot = res.hourly.time.indexOf(format);
         console.log(format)
-        console.log(spot)
 
         let currTempF = results(spot).temp;
         let currTempC = `${((parseInt((currTempF))-32)/1.8).toFixed(1)}°C`
@@ -134,14 +160,12 @@ function currentAndForm() {
       let submit = document.getElementById("submit");
       submit.addEventListener("submit", (e) => {
         e.preventDefault();
-
-        document.querySelector('#switchTwo').style = "visibility: visible"
+        document.querySelector('#switchTwo').style = "visibility: visible"	
         let format = `${today.getFullYear()}-${currentMonth}-${
           parseInt(today.getDate()) + parseInt(day.value)
         }T${e.target.hour.value}`;
+
         let spot = res.hourly.time.indexOf(format);
-        console.log(format)
-        console.log(spot)
 
         let currTempF = results(spot).temp;
         let currTempC = `${((parseInt((currTempF))-32)/1.8).toFixed(1)}°C`
@@ -183,9 +207,6 @@ function currentAndForm() {
       }
     });
 }
-
-
-
 
 function hourlyFunction() {
   let hour = parseInt(today.getHours());
@@ -384,6 +405,8 @@ const cityForm = document.querySelector("#cityForm");
 cityForm.addEventListener("submit", (e) => {
   e.preventDefault();
   document.querySelector('#switchTwo').style = "visibility: hidden"
+  
+
 //clear hourform
 
   let formTemp = document.getElementById("formTemp");
@@ -419,7 +442,6 @@ hourSubmit.addEventListener('mouseover', e => {
 hourSubmit.addEventListener('mouseleave', e => {
   hourSubmit.style['background-color'] = '#9f9f9f';
 })
-
 
 currentAndForm()
 hourlyFunction()

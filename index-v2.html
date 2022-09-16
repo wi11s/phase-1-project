@@ -58,11 +58,11 @@
         <select id="day">
           <option value="0">Today</option>
           <option value="1">Tomorrow</option>
-          <option value="2">Two days from now</option>
-          <option value="3">Three days from now</option>
-          <option value="4">Four days from now</option>
-          <option value="5">Five days from now</option>
-          <option value="6">Six days from now</option>
+          <option id="feThree" value="2">Two days from now</option>
+          <option id="feFour" value="3">Three days from now</option>
+          <option id="feFive" value="4">Four days from now</option>
+          <option id="feSix" value="5">Five days from now</option>
+          <option id="feSeven" value="6">Six days from now</option>
         </select>
 
         <input type="submit" value="Submit" id="hourSubmit">
@@ -81,12 +81,7 @@
     </div>
 
     <div id="currentDay">
-      <div id="news">
-        <h4 id="newsHeader">Today's Top Environmental News!</h4>
-        <ol>
-    
-        </ol>
-      </div>
+      <h5 id="greeting"></h5>
       <label id="switchOne">
         <input type="checkbox" id="slider">
         <span class="slider round"></span>

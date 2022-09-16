@@ -130,12 +130,11 @@ h4 {
     margin-left: 20px;
 }
 
-ol {
+h5 {
     position: absolute;
-    left: 40%;
     right: 5%;
-    top: 15%;
-    bottom: 10%;
+    top: -2%;
+    font-size:x-large;
 }
 #newsHeader {
     position: absolute;
@@ -151,9 +150,9 @@ ol {
 
 #hourLst {
     position:absolute;
-    top: -6%;
-    right:5%;
-    left:5%;
+    top:-6px;	
+    right:50px;	
+    left:50px;
 }
 
 #tempLst {
@@ -166,13 +165,13 @@ ol {
 .list {
     display: inline;
     color: rgb(255, 255, 255);
-    padding: 5.62%;
+    padding: 5.7%;
 }
 
 .hourList {
     display: inline;
     color: rgb(153, 176, 161);
-    padding: 5.5%;
+    padding: 5.58%;
 }
 
 #hourSubmit {
@@ -186,8 +185,29 @@ ol {
     cursor: pointer;
 }
 
+#formTemp {	
+    position:absolute;	
+    top: 0%;	
+    left: 5%;	
+}	
+#formRain {	
+    position: absolute;	
+    top: 47%;	
+    left: 3%;	
+}	
+#formHumid {	
+    position: absolute;	
+    top: 27%;	
+    left: 3%;	
+}	
+#formWind {	
+    position: absolute;	
+    top: 67%;	
+    left: 3%;	
+}	
+
 #hourFormDiv {
-    border-radius: 7px;
+    border-radius: 5px;
     background-color: #f2f2f2;
     padding: 20px;
     position:absolute;
@@ -196,6 +216,7 @@ ol {
     right: 52%;
     border-width: 2px;
     border-style: solid;
+    opacity: .95;
 }
 
 #citySubmit {
@@ -210,16 +231,15 @@ ol {
 }
 
 #cityFormDiv {
-    border-radius: 7px;
+    border-radius: 5px;
     background-color: #f2f2f2;
-    opacity: .9;
     padding: 20px;
     position:absolute;
     top:2%;
     left:40%;
-    border-color: rgb(59, 59, 59);
     border-width: 2px;
     border-style: solid;
+    opacity: .9;
 }
 
 #city, #hour, #day {
@@ -243,8 +263,8 @@ ol {
 
 #switchOne {
     position: absolute;
-    top: 7%;
-    left: 12%;
+    top: 7%;	
+    left: 15%;
     display: inline-block;
     width: 60px;
     height: 34px;
@@ -252,8 +272,8 @@ ol {
 
 #switchTwo {
     position: absolute;
-    top: 11%;
-    left: 25%;
+    top: 11%;	
+    left: 30%;
     display: inline-block;
     width: 60px;
     height: 34px;
@@ -294,14 +314,16 @@ ol {
     background-color: white;
     -webkit-transition: .4s;
     transition: .4s;
+    visibility: visible; 
+    /* make sure visibility belongs */
 }
 
 input:checked + .slider {
-    background-color: #73aede;;
+    background-color: #2196F3;
 }
 
 input:focus + .slider {
-    box-shadow: 0 0 1px #73aede;
+    box-shadow: 0 0 1px #2196F3;
 }
 
 input:checked + .slider:before {
